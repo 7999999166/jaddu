@@ -1,16 +1,17 @@
+
+import { initPathRouter } from '@bjornlu/svelte-router';
 import App from './App.svelte';
+import Home from './Home.svelte';
+import Page from './Page.svelte';
 
-let app = new App({
-  target: document.body,
-});
+// Use `initHashRouter` for hash mode
+initPathRouter([
+  { path: '/', component: Home },
+  { path: '/page', component: Page }
+])
 
-export default app;
+const app = new App({
+  target: document.body
+})
 
-// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-// Learn more: https://www.snowpack.dev/concepts/hot-module-replacement
-if (import.meta.hot) {
-  import.meta.hot.accept();
-  import.meta.hot.dispose(() => {
-    app.$destroy();
-  });
-}
+export default app
